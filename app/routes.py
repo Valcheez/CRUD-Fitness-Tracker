@@ -31,4 +31,4 @@ def delete_entry(id):
 
     return redirect(url_for('index'))
 
-# ... You can add routes for 'update' and other actions as needed.
+
