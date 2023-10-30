@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Fitness Tracker</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    
+<body>
+
+<h1>Fitness Tracker</h1>
+
+<h2>Add New Entry</h2>
+<form action="/add" method="post">
+    <div class="container">
+        <div class="input-group">
+            <label for="day">Day:</label>
+            <input type="date" id="day" name="day" required>
+        </div>
+        <div class="input-group">
+            <label for="workout">Workout:</label>
+            <input type="text" id="workout" name="workout" placeholder="Workout" required>
+        </div>
+        <div class="input-group">
+            <label for="exercises">Exercises:</label>
+            <textarea id="exercises" name="exercises" placeholder="Exercises" rows="3"></textarea>
+        </div>
+        <div class="input-group">
+            <input type="submit" value="Add Entry">
+        </div>
+    </div>
+</form>
+
+<h2>Entries</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Day</th>
+            <th>Workout</th>
+            <th>Exercises</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in entries %}
+        <tr>
+            <td>{{ entry.day }}</td>
+            <td>{{ entry.workout }}</td>
+            <td>{{ entry.exercises }}</td>
+            <td>
+                <a href="/delete/{{ entry.id }}">Delete</a>
+                <!-- You can also add "Edit" links here when you add the edit functionality -->
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
